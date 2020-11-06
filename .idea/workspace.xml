@@ -7,6 +7,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -17,6 +24,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="B:\Projects\DIT953-lab1\src" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -28,5 +43,23 @@
       <updated>1604655266162</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" width="1092" height="787" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604656365384">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" width="1092" height="787" key="#com.intellij.execution.impl.EditConfigurationsDialog/1920.51.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1604656365384" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1604657652734">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/1920.51.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1604657652734" />
+    <state x="689" y="333" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604656364481">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="333" key="#com.intellij.ide.util.TreeClassChooserDialog/1920.51.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1604656364481" />
+    <state x="440" y="94" key="SettingsEditor" timestamp="1604656679786">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="440" y="94" key="SettingsEditor/1920.51.1280.984/0.0.1920.1040@0.0.1920.1040" timestamp="1604656679786" />
   </component>
 </project>
