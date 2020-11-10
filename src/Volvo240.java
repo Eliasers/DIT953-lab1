@@ -22,6 +22,7 @@ public class Volvo240 extends Car {
     }
 
     /**
+     * Gets the car's acceleration based on its properties
      * @return The car's acceleration factor
      */
     public double speedFactor(){
