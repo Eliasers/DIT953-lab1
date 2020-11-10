@@ -70,7 +70,7 @@ public abstract class Car implements IMovable {
         currentSpeed = 0.1;
     }
 
-    protected void stopEngine(){
+    public void stopEngine(){
         currentSpeed = 0;
     }
 
