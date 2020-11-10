@@ -1,14 +1,35 @@
 import java.awt.*;
 
 public abstract class Car implements IMovable {
-    protected int nrDoors; // Number of doors on the car
-    protected double enginePower; // Engine power of the car
-    private double currentSpeed; // The current speed of the car
-    protected Color color; // Color of the car
-    protected String modelName; // The car model name
+    /**
+     * Number of doors on the car
+     */
+    protected int nrDoors;
+    /**
+     * Power of the car's engine
+     */
+    protected double enginePower;
+    /**
+     * The current speed of the car
+     */
+    private double currentSpeed;
+    /**
+     * Color of the car
+     */
+    protected Color color;
+    /**
+     * The car model name
+     */
+    protected String modelName;
 
+    /**
+     * The x and y coordinates of the car
+     */
     double x = 0, y = 0;
-    double angle = 0; //This is in radians
+    /**
+     * The rotation angle of the car in radians
+     */
+    double angle = 0;
 
     /**
      * @return Number of car doors
@@ -72,11 +93,17 @@ public abstract class Car implements IMovable {
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
-    private void gas(double amount){
+    /**
+     * @param amount One minus the distance between the pedal and the metal
+     */
+    public void gas(double amount){
         amount = clampInput(amount);
         incrementSpeed(amount);
     }
 
+    /**
+     * @param amount Brake hardness from zero to one
+     */
     private void brake(double amount){
         amount = clampInput(amount);
         decrementSpeed(amount);

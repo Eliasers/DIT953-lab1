@@ -12,6 +12,9 @@ public class Volvo240 extends Car {
         stopEngine();
     }
 
+    /**
+     * @return The car's acceleration factor
+     */
     public double speedFactor(){
         return enginePower * 0.01 * trimFactor;
     }

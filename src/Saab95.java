@@ -21,6 +21,9 @@ public class Saab95 extends Car {
         turboOn = false;
     }
 
+    /**
+     * @return The car's acceleration factor
+     */
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;
