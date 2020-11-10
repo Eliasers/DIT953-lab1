@@ -23,7 +23,7 @@ public abstract class Car implements IMovable {
     protected String modelName;
 
     /**
-     * The x and y coordinates of the car
+     * Coordinate of the car
      */
     double x = 0, y = 0;
     /**
@@ -32,6 +32,7 @@ public abstract class Car implements IMovable {
     double angle = 0;
 
     /**
+     * Get number of car doors
      * @return Number of car doors
      */
     private int getNrDoors(){
@@ -39,6 +40,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Get the power of the car's engine
      * @return The power of the car's engine
      */
     private double getEnginePower(){
@@ -46,6 +48,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Get the magnitude of the car's current velocity
      * @return The magnitude of the car's current velocity
      */
     private double getCurrentSpeed(){
@@ -53,6 +56,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Get the color of the car's chassis
      * @return The color of the car's chassis
      */
     private Color getColor(){
@@ -60,26 +64,35 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Set the color of the car's chassis
      * @param clr The color to set the car's chassis color to
      */
     private void setColor(Color clr){
         color = clr;
     }
 
+    /**
+     * Start the car's engine
+     */
     private void startEngine(){
         currentSpeed = 0.1;
     }
 
+    /**
+     * Stop the car's engine
+     */
     protected void stopEngine(){
         currentSpeed = 0;
     }
 
     /**
+     * Get the acceleration output of the car
      * @return The acceleration output of the car
      */
     protected abstract double speedFactor();
 
     /**
+     * Accelerate the car
      * @param amount Acceleration input factor
      */
     private void incrementSpeed(double amount){
@@ -87,6 +100,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Decelerate the car
      * @param amount Deceleration input factor
      */
     private void decrementSpeed(double amount){
@@ -94,6 +108,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Step on the gas
      * @param amount One minus the distance between the pedal and the metal
      */
     public void gas(double amount){
@@ -102,6 +117,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Step on the brake
      * @param amount Brake hardness from zero to one
      */
     private void brake(double amount){
@@ -110,6 +126,7 @@ public abstract class Car implements IMovable {
     }
 
     /**
+     * Clamp a value between zero and one
      * @param input The input value
      * @return  The input value clamped between zero and one
      */
@@ -117,6 +134,9 @@ public abstract class Car implements IMovable {
         return Math.max(0, Math.min(1, input));
     }
 
+    /**
+     * Move the car according to its velocity, derived from its current speed and rotation angle
+     */
     @Override
     public void move() {
         x += Math.cos(angle) * getCurrentSpeed();
