@@ -104,7 +104,7 @@ public abstract class Car implements IMovable {
     /**
      * @param amount Brake hardness from zero to one
      */
-    private void brake(double amount){
+    public void brake(double amount){
         amount = clampInput(amount);
         decrementSpeed(amount);
     }
