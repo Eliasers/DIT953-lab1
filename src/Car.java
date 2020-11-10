@@ -4,32 +4,43 @@ public abstract class Car implements IMovable {
     /**
      * Number of doors on the car
      */
-    int nrDoors;
+    private int nrDoors;
     /**
      * Power of the car's engine
      */
-    double enginePower;
+    private double enginePower;
     /**
      * The current speed of the car
      */
-    double currentSpeed;
+    private double currentSpeed;
     /**
      * Color of the car
      */
-    Color color;
+    private Color color;
     /**
      * The car model name
      */
-    String modelName;
+    private String modelName;
 
     /**
      * The x and y coordinates of the car
      */
-    double x = 0, y = 0;
+    public double x = 0, y = 0;
     /**
      * The rotation angle of the car in radians
      */
-    double angle = 0;
+    private double angle = 0;
+
+    /**
+     * Constructs a car with default values
+     */
+    public Car(){
+        nrDoors = 2;
+        color = Color.red;
+        enginePower = 125;
+        modelName = "Saab95";
+        stopEngine();
+    }
 
     /**
      * @return Number of car doors
@@ -57,6 +68,13 @@ public abstract class Car implements IMovable {
      */
     public Color getColor(){
         return color;
+    }
+
+    /**
+     * @return The car's current direction
+     */
+    public double getAngle() {
+        return angle;
     }
 
     /**
