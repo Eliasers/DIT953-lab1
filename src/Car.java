@@ -4,23 +4,23 @@ public abstract class Car implements IMovable {
     /**
      * Number of doors on the car
      */
-    protected int nrDoors;
+    int nrDoors;
     /**
      * Power of the car's engine
      */
-    protected double enginePower;
+    double enginePower;
     /**
      * The current speed of the car
      */
-    private double currentSpeed;
+    double currentSpeed;
     /**
      * Color of the car
      */
-    protected Color color;
+    Color color;
     /**
      * The car model name
      */
-    protected String modelName;
+    String modelName;
 
     /**
      * The x and y coordinates of the car
@@ -34,43 +34,43 @@ public abstract class Car implements IMovable {
     /**
      * @return Number of car doors
      */
-    private int getNrDoors(){
+    public int getNrDoors(){
         return nrDoors;
     }
 
     /**
      * @return The power of the car's engine
      */
-    private double getEnginePower(){
+    public double getEnginePower(){
         return enginePower;
     }
 
     /**
      * @return The magnitude of the car's current velocity
      */
-    private double getCurrentSpeed(){
+    public double getCurrentSpeed(){
         return currentSpeed;
     }
 
     /**
      * @return The color of the car's chassis
      */
-    private Color getColor(){
+    public Color getColor(){
         return color;
     }
 
     /**
      * @param clr The color to set the car's chassis color to
      */
-    private void setColor(Color clr){
+    public void setColor(Color clr){
         color = clr;
     }
 
-    private void startEngine(){
+    public void startEngine(){
         currentSpeed = 0.1;
     }
 
-    protected void stopEngine(){
+    public void stopEngine(){
         currentSpeed = 0;
     }
 

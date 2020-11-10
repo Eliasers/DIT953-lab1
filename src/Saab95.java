@@ -4,7 +4,7 @@ public class Saab95 extends Car {
     /**
      * The state of the turbo
      */
-    public boolean turboOn;
+    boolean turboOn;
 
     /**
      * Constructs a saab95 with default values
