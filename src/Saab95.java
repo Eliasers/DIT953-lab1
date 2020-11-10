@@ -2,10 +2,13 @@ import java.awt.*;
 
 public class Saab95 extends Car {
     /**
-     * @return The state of the turbo
+     * The state of the turbo
      */
     public boolean turboOn;
-    
+
+    /**
+     * Constructs a saab95 with default values
+     */
     public Saab95(){
         nrDoors = 2;
         color = Color.red;
@@ -31,6 +34,7 @@ public class Saab95 extends Car {
     }
 
     /**
+     * Get the car's acceleartion factor
      * @return The car's acceleration factor
      */
     public double speedFactor(){
