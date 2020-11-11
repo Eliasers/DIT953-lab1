@@ -6,9 +6,15 @@ public class Test {
     final double maxDivergence = 0;
 
     @org.junit.Test
-    public void Saab95() {
+    public void test() {
+        test_saab95();
+        test_volvo240();
+    }
+
+    @org.junit.Test
+    public void test_saab95() {
         Saab95 saab = new Saab95();
-        TestCar(saab);
+        car_test(saab);
 
         //Turbo
         saab.setTurboOn();
@@ -17,12 +23,12 @@ public class Test {
         assertNotEquals(speedBeforeTurbo, saab.speedFactor(), maxDivergence);
     }
     @org.junit.Test
-    public void Volvo240(){
+    public void test_volvo240(){
         Volvo240 volvo = new Volvo240();
-        TestCar(volvo);
+        car_test(volvo);
     }
 
-    void TestCar(Car car){
+    void car_test(Car car){
         double oldX, oldY;
 
         car.gas(1);
