@@ -4,11 +4,11 @@ public abstract class Car implements IMovable {
     /**
      * Number of doors on the car
      */
-    protected int nrDoors;
+    private int nrDoors;
     /**
      * Power of the car's engine
      */
-    protected double enginePower;
+    private double enginePower;
     /**
      * The current speed of the car
      */
@@ -16,26 +16,37 @@ public abstract class Car implements IMovable {
     /**
      * Color of the car
      */
-    protected Color color;
+    private Color color;
     /**
      * The car model name
      */
-    protected String modelName;
+    private String modelName;
 
     /**
      * Coordinate of the car
      */
-    double x = 0, y = 0;
+    public double x = 0, y = 0;
     /**
      * The rotation angle of the car in radians
      */
-    double angle = 0;
+    private double angle = 0;
+
+    /**
+     * Constructs a car with default values
+     */
+    public Car(){
+        nrDoors = 2;
+        color = Color.red;
+        enginePower = 125;
+        modelName = "Saab95";
+        stopEngine();
+    }
 
     /**
      * Get number of car doors
      * @return Number of car doors
      */
-    private int getNrDoors(){
+    public int getNrDoors(){
         return nrDoors;
     }
 
@@ -43,7 +54,7 @@ public abstract class Car implements IMovable {
      * Get the power of the car's engine
      * @return The power of the car's engine
      */
-    private double getEnginePower(){
+    public double getEnginePower(){
         return enginePower;
     }
 
@@ -51,7 +62,7 @@ public abstract class Car implements IMovable {
      * Get the magnitude of the car's current velocity
      * @return The magnitude of the car's current velocity
      */
-    private double getCurrentSpeed(){
+    public double getCurrentSpeed(){
         return currentSpeed;
     }
 
@@ -59,15 +70,23 @@ public abstract class Car implements IMovable {
      * Get the color of the car's chassis
      * @return The color of the car's chassis
      */
-    private Color getColor(){
+    public Color getColor(){
         return color;
+    }
+
+    /**
+     * Get the car's facing direction
+     * @return The car's current rotation angle
+     */
+    public double getAngle() {
+        return angle;
     }
 
     /**
      * Set the color of the car's chassis
      * @param clr The color to set the car's chassis color to
      */
-    private void setColor(Color clr){
+    public void setColor(Color clr){
         color = clr;
     }
 
@@ -120,7 +139,7 @@ public abstract class Car implements IMovable {
      * Step on the brake
      * @param amount Brake hardness from zero to one
      */
-    private void brake(double amount){
+    public void brake(double amount){
         amount = clampInput(amount);
         decrementSpeed(amount);
     }
