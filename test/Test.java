@@ -29,8 +29,6 @@ public class Test {
     }
 
     void car_test(Car car){
-        double oldX, oldY;
-
         car.gas(1);
 
         //FORWARD
@@ -40,7 +38,7 @@ public class Test {
         car.turnLeft();
         moveChangeXY(car, false, true);
 
-        //X change, Y no change FOWARD AGAIN
+        //X change, Y no change FORWARD AGAIN
         car.turnRight();
         moveChangeXY(car, true, false);
 
