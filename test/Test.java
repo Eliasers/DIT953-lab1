@@ -3,7 +3,7 @@ import java.awt.*;
 import static org.junit.Assert.*;
 
 public class Test {
-    final double maxDivergence = 0;
+    final double maxDivergence = 0.00001;
 
     @org.junit.Test
     public void test() {
@@ -30,9 +30,6 @@ public class Test {
 
     void car_test(Car car){
         car.gas(1);
-
-        //FORWARD
-        moveChangeXY(car, true, false);
 
         //LEFT
         car.turnLeft();
