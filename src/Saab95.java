@@ -1,5 +1,8 @@
 import java.awt.*;
 
+/**
+ * Class representing a Saab 95 car
+ */
 public class Saab95 extends Car {
     /**
      * The state of the turbo
@@ -32,6 +35,7 @@ public class Saab95 extends Car {
      * Get the car's acceleartion factor
      * @return The car's acceleration factor
      */
+    @Override
     public double speedFactor(){
         double turbo = 1;
         if(turboOn) turbo = 1.3;

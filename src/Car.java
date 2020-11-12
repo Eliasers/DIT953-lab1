@@ -1,14 +1,17 @@
 import java.awt.*;
 
+/**
+ * Abstract class whose children should represent cars
+ */
 public abstract class Car implements IMovable {
     /**
      * Number of doors on the car
      */
-    private int nrDoors;
+    private final int nrDoors;
     /**
      * Power of the car's engine
      */
-    private double enginePower;
+    private final double enginePower;
     /**
      * The current speed of the car
      */
@@ -20,7 +23,7 @@ public abstract class Car implements IMovable {
     /**
      * The car model name
      */
-    private String modelName;
+    private final String modelName;
 
     /**
      * Coordinate of the car
@@ -108,7 +111,9 @@ public abstract class Car implements IMovable {
      * Get the acceleration output of the car
      * @return The acceleration output of the car
      */
-    protected abstract double speedFactor();
+    protected double speedFactor() {
+        return getEnginePower() * 0.01;
+    }
 
     /**
      * Accelerate the car

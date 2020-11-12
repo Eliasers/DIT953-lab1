@@ -6,9 +6,9 @@ public class Test {
     final double maxDivergence = 0.00001;
 
     @org.junit.Test
-    public void test_saab95() {
+    public void testSaab95() {
         Saab95 saab = new Saab95();
-        car_test(saab);
+        carTest(saab);
 
         //Turbo
         saab.setTurboOn();
@@ -18,12 +18,12 @@ public class Test {
     }
 
     @org.junit.Test
-    public void test_volvo240(){
+    public void testVolvo240(){
         Volvo240 volvo = new Volvo240();
-        car_test(volvo);
+        carTest(volvo);
     }
 
-    void car_test(Car car){
+    void carTest(Car car){
         car.gas(1);
 
         //LEFT
