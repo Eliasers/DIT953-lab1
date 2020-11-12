@@ -1,8 +1,10 @@
+import java.util.Deque;
 /**
  * A repair shop that is able to take in a specific numbers of cars and later on let them out.
  */
 public class RepairShop implements ICarTransport{
     private int maxNumberOfCars;
+    private Deque<Car> brokenCars;
 
 
     /**
@@ -10,7 +12,7 @@ public class RepairShop implements ICarTransport{
      */
     @Override
     public void loadCar(Car car) {
-
+        brokenCars.push(car);
     }
 
     /**
@@ -18,7 +20,14 @@ public class RepairShop implements ICarTransport{
      */
     @Override
     public Car unloadCar() {
-        return null;
+        return brokenCars.pop();
+    }
+
+    /**
+     * Constructs a Repair shop with default values
+     */
+    public RepairShop(){
+        maxNumberOfCars = 12;
     }
 
 
