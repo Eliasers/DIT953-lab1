@@ -15,6 +15,7 @@ public class Volvo240 extends Car {
      */
     public Volvo240(){
         super();
+        modelName = "Volvo240";
         stopEngine();
     }
 

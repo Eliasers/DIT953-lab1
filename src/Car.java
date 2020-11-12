@@ -23,7 +23,7 @@ public abstract class Car implements IMovable {
     /**
      * The car model name
      */
-    private final String modelName;
+    protected String modelName;
 
     /**
      * Coordinate of the car
@@ -41,8 +41,15 @@ public abstract class Car implements IMovable {
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;
-        modelName = "Saab95";
-        stopEngine();
+    }
+
+    /**
+     * Constructs a car with custom values
+     */
+    public Car(int nrDoors, double enginePower, Color color) {
+        this.nrDoors = nrDoors;
+        this.enginePower = enginePower;
+        this.color = color;
     }
 
     /**
@@ -83,6 +90,14 @@ public abstract class Car implements IMovable {
      */
     public double getAngle() {
         return angle;
+    }
+
+    /**
+     * Sets the angle of the car's rotation. Used by transports
+     * @param angle The angle to set the car's rotation to
+     */
+    public void setAngle(double angle) {
+        this.angle = angle;
     }
 
     /**
@@ -168,5 +183,10 @@ public abstract class Car implements IMovable {
 
     public double getDistance(Car other){
         return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
+    }
+
+    public static void positionCarBehind(Car self, Car other) {
+        other.x -= Math.cos(self.getAngle()) * 2;
+        other.y -= Math.sin(self.getAngle()) * 2;
     }
 }
