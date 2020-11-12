@@ -136,8 +136,7 @@ public abstract class Car implements IMovable {
      * @param amount One minus the distance between the pedal and the metal
      */
     public void gas(double amount){
-        amount = clampInput(amount);
-        incrementSpeed(amount);
+        incrementSpeed(Math.max(0, Math.min(1, amount)));
     }
 
     /**
