@@ -1,5 +1,7 @@
 public class Scania extends Truck {
 
+    private static double MAX_PLATFORM_ANGLE = 70.0;
+
     private double platformAngle;
 
     @Override
@@ -8,6 +10,7 @@ public class Scania extends Truck {
     }
 
     public void movePlatform(double amount){
-        platformAngle += amount;
+        if (getCurrentSpeed() > 0) return;
+        platformAngle = Math.max(0, Math.min(MAX_PLATFORM_ANGLE, platformAngle + amount));
     }
 }

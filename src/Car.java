@@ -145,17 +145,7 @@ public abstract class Car implements IMovable {
      * @param amount Brake hardness from zero to one
      */
     public void brake(double amount){
-        amount = clampInput(amount);
-        decrementSpeed(amount);
-    }
-
-    /**
-     * Clamp a value between zero and one
-     * @param input The input value
-     * @return  The input value clamped between zero and one
-     */
-    private double clampInput(double input) {
-        return Math.max(0, Math.min(1, input));
+        decrementSpeed(Math.max(0, Math.min(1, amount)));
     }
 
     /**
