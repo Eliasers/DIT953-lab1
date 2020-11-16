@@ -14,6 +14,7 @@ public class Saab95 extends Car {
      */
     public Saab95(){
         super();
+        modelName = "Saab95";
 	    turboOn = false;
     }
 

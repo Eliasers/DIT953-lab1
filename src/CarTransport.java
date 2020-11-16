@@ -1,10 +1,21 @@
+import java.awt.*;
+import java.lang.reflect.Type;
+import java.util.ArrayDeque;
+import java.util.Collection;
 import java.util.Deque;
+import java.util.Iterator;
 
 public class CarTransport extends Truck implements ICarTransport {
 
     private boolean platformLowered;
 
     private Deque<Car> loadedCars;
+
+    public CarTransport() {
+        super(2, 300, Color.yellow);
+        platformLowered = false;
+        loadedCars = new ArrayDeque<>();
+    }
 
     @Override
     protected boolean platformLowered() {
@@ -23,8 +34,7 @@ public class CarTransport extends Truck implements ICarTransport {
     @Override
     public Car unloadCar() {
         Car car = loadedCars.pop();
-        car.x -= Math.cos(getAngle()) * 2;
-        car.y -= Math.sin(getAngle()) * 2;
+        Car.positionCarBehind(this, car);
         return car;
     }
 
@@ -34,7 +44,7 @@ public class CarTransport extends Truck implements ICarTransport {
         for (Car car : loadedCars){
             car.x = x;
             car.y = y;
-            car.set
+            car.setAngle(getAngle());
         }
     }
 }
