@@ -20,4 +20,8 @@ public interface IMovable {
      */
     void turnRight();
 
+    /**
+     * Implementations should return a vector to represent position
+     */
+    double[] getPosition();
 }

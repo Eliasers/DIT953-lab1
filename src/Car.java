@@ -181,6 +181,9 @@ public abstract class Car implements IMovable {
         angle += Math.PI / 2;
     }
 
+    @Override
+    public double[] getPosition() {return new double[]{x, y};}
+
     public double getDistance(Car other){
         return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
     }
