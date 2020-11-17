@@ -1,8 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class program extends JFrame{
 
@@ -35,15 +34,16 @@ public class program extends JFrame{
     }
 
     public static void main(String args[]){
-
         program frame = new program("Car demo");
         frame.setVisible(true);
         frame.setSize(600,600);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-    }
 
+        FrameUpdaterThread thread = new FrameUpdaterThread(frame);
+        thread.start();
+    }
 }
 
 class DrawPoints{
@@ -67,6 +67,22 @@ class DrawPoints{
         for (int i = 0; i < carPointCount; i++) {
             carX[i] = (int)(carXPoints[i] * UniScale) + xOff;
             carY[i] = (int)(carYPoints[i] * UniScale) + yOff;
-        }
+    FrameUpdaterThread(JFrame frame) {
+        this.frame = frame;
     }
-};
+
+    @Override
+    public void run() {
+        Graphics g = frame.getGraphics();
+        try{
+            while(true){
+                frame.paint(g);
+                TimeUnit.MILLISECONDS.sleep(500);
+            }
+        }
+        catch (Exception e){
+            System.out.println("Updater interrupted. Reason: " + e.getMessage());
+        }
+
+    }
+}
