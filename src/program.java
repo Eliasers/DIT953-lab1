@@ -5,8 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 public class program extends JFrame{
 
-
-
     ArrayList<Car> cars;
 
     public program(String a){
@@ -20,7 +18,13 @@ public class program extends JFrame{
     public void paint(Graphics g) {
         super.paint(g);
 
+
+
         for (Car car : cars){
+            System.out.println("Current X " + car.x);
+            car.gas(1);
+            car.move();
+            //car.turnRight();
             if (car instanceof Volvo240 || car instanceof Saab95){
                 paintCar(car, g);
             }
@@ -28,9 +32,10 @@ public class program extends JFrame{
     }
 
     void paintCar(Car car, Graphics g){
+        int[][] carPoints = DrawPoints.DrawCar.GetPoints(car);
+        int pointCount = DrawPoints.DrawCar.Count();
 
-
-        g.drawPolygon(DrawPoints.carX, DrawPoints.carY, DrawPoints.carPointCount);
+        g.drawPolygon(carPoints[0], carPoints[1], pointCount);
     }
 
     public static void main(String args[]){
