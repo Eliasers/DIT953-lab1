@@ -47,26 +47,85 @@ public class program extends JFrame{
 }
 
 class DrawPoints{
-    static final int xOff = 400, yOff = 400;
-    static double UniScale = 100;
+    static private double UniScale = 40;
+    static private int xOff = 200, yOff = 200;
 
-    private static double[] carXPoints = new double[]{
-            -1.2, -1.5, -1.3, 1.3, 1.6, 1.4
-    };
-    private static double[] carYPoints = new double[]{
-            0, -1, -1.6, -1.5, -1, 0
-    };
-    public static int[] carX;
-    public static int[] carY;
+    public void SetOffset(int x, int y){
+        xOff = x;
+        yOff = y;
+    }
 
-    public static int carPointCount = carXPoints.length;
+    private static int[][] PointsToScreen(double[][] points){
+        int[] tmpX;
+        int[] tmpY;
 
-    static{
-        carX= new int[carPointCount];
-        carY = new int[carPointCount];
-        for (int i = 0; i < carPointCount; i++) {
-            carX[i] = (int)(carXPoints[i] * UniScale) + xOff;
-            carY[i] = (int)(carYPoints[i] * UniScale) + yOff;
+        tmpX = new int[points[0].length];
+        tmpY = new int[points[1].length];
+        for (int i = 0; i < points[0].length; i++) {
+            tmpX[i] = (int)(points[0][i] * UniScale) + xOff;
+            tmpY[i] = (int)(points[1][i] * UniScale) + yOff;
+        }
+
+        return new int[][]{tmpX, tmpY};
+    }
+    private static int[][] PointsToScreen(double[][] points, IMovable movable){
+        int[] tmpX = new int[points[0].length];
+        int[] tmpY = new int[points[1].length];
+
+        double[] movablePos = movable.getPosition();
+
+        for (int i = 0; i < points[0].length; i++) {
+            tmpX[i] = (int)((points[0][i] * UniScale) + movablePos[0]) + xOff;
+            tmpY[i] = (int)((points[1][i] * UniScale) + movablePos[1]) + yOff;
+        }
+
+        return new int[][]{tmpX, tmpY};
+    }
+
+    private static double[][] Rotate2DArray(double[][] array, double angle){
+        double[] tmpX = new double[array[0].length];
+        double[] tmpY = new double[array[1].length];
+
+        double cos = Math.cos(angle);
+        double sin = Math.sin(angle);
+
+        //NERD SHIT
+        for (int i = 0; i < tmpX.length; i++) {
+            tmpX[i] = cos * array[0][i] - sin * array[1][i];
+            tmpY[i] = sin * array[0][i] + cos * array[1][i];
+        }
+
+        return new double[][]{tmpX, tmpY};
+    }
+
+
+    public static class DrawCar {
+        private static double[] carXPoints = new double[]{
+                -1.2, -1.5, -1.3, 1.3, 1.6, 1.4
+        };
+        private static double[] carYPoints = new double[]{
+                0, -1, -1.6, -1.5, -1, 0
+        };
+
+        public static int Count() {
+            return carXPoints.length;
+        }
+
+        public static int[][] GetPoints(Car car){
+            double[][] coordinates = new double[][]{carXPoints, carYPoints};
+
+            coordinates = Rotate2DArray(coordinates, car.getAngle());
+
+            return PointsToScreen(coordinates, car);
+        }
+    }
+
+};
+
+class FrameUpdaterThread extends Thread {
+
+    private JFrame frame;
+
     FrameUpdaterThread(JFrame frame) {
         this.frame = frame;
     }
