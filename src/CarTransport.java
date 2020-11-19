@@ -68,4 +68,13 @@ public class CarTransport extends Truck implements ICarTransport {
             car.setAngle(getAngle());
         }
     }
+
+    public void lowerPlatform() {
+        if (getCurrentSpeed() > 0) return;
+        platformLowered = true;
+    }
+
+    public void raisePlatform() {
+        platformLowered = false;
+    }
 }
