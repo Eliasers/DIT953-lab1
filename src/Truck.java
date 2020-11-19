@@ -6,16 +6,21 @@ import java.awt.*;
 public abstract class Truck extends Car {
     protected abstract boolean platformLowered();
 
+    /**
+     * the amount of gas given
+     * @param amount One minus the distance between the pedal and the metal
+     */
     @Override
     public void gas(double amount){
         if (platformLowered()) return;
         super.gas(amount);
     }
 
+
     public Truck() {
         super();
     }
-
+    
     public Truck(int nrDoors, double enginePower, Color color) {
         super(nrDoors, enginePower, color);
     }
