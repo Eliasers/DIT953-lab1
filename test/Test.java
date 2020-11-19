@@ -18,13 +18,13 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testVolvo240(){
+    public void testVolvo240() {
         Volvo240 volvo = new Volvo240();
         carTest(volvo);
     }
 
     @org.junit.Test
-    public void testScania(){
+    public void testScania() {
         //Not necessarily finished
         Scania scania = new Scania();
         carTest(scania);
@@ -41,7 +41,7 @@ public class Test {
         assertTrue(scania.getCurrentSpeed() > speed);
     }
 
-    void carTest(Car car){
+    void carTest(Car car) {
         car.gas(1);
 
         //LEFT
@@ -77,7 +77,7 @@ public class Test {
         assertTrue(car.getNrDoors() >= 0);
     }
 
-    void moveChangeXY(Car car, boolean xChange, boolean yChange){
+    void moveChangeXY(Car car, boolean xChange, boolean yChange) {
         double oldX = car.x;
         double oldY = car.y;
 
@@ -91,9 +91,24 @@ public class Test {
         else assertEquals(oldY, car.y, maxDivergence);
     }
 
-    void stopCar(Car car){
-        while (car.getCurrentSpeed() > 0){
+    void stopCar(Car car) {
+        while (car.getCurrentSpeed() > 0) {
             car.brake(1);
         }
+    }
+
+    @org.junit.Test
+    public void testCarTransport() {
+        CarTransport carTransport = new CarTransport();
+        Volvo240 volvo = new Volvo240();
+        carTest(carTransport);
+        stopCar(carTransport);
+        carTransport.platformLowered();
+        carTransport.gas(1);
+        assertEquals(0, carTransport.getCurrentSpeed(), maxDivergence);
+        
+        carTransport.loadCar(volvo);
+        assertEquals(volvo, carTransport.unloadCar());
+
     }
 }
