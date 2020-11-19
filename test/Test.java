@@ -23,6 +23,24 @@ public class Test {
         carTest(volvo);
     }
 
+    @org.junit.Test
+    public void testScania(){
+        //Not necessarily finished
+        Scania scania = new Scania();
+        carTest(scania);
+        stopCar(scania);
+        scania.movePlatform(1);
+        scania.gas(1);
+        assertEquals(0, scania.getCurrentSpeed(), maxDivergence);
+        scania.movePlatform(-1);
+        scania.gas(1);
+        assertNotEquals(0, scania.getCurrentSpeed(), maxDivergence);
+        double speed = scania.getCurrentSpeed();
+        scania.movePlatform(1); //Should fail because car is in motion...
+        scania.gas(1); //... meaning this succeeds since the platform wasn't lowered
+        assertTrue(scania.getCurrentSpeed() > speed);
+    }
+
     void carTest(Car car){
         car.gas(1);
 
@@ -71,5 +89,11 @@ public class Test {
         //Y
         if (yChange) assertNotEquals(oldY, car.y, maxDivergence);
         else assertEquals(oldY, car.y, maxDivergence);
+    }
+
+    void stopCar(Car car){
+        while (car.getCurrentSpeed() > 0){
+            car.brake(1);
+        }
     }
 }
