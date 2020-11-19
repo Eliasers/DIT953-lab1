@@ -19,7 +19,7 @@ public class Scania extends Truck {
     }
 
     /**
-     * constructs a Scania truck with default values
+     * Constructs a Scania truck with default values
      */
     public Scania() {
         super(2, 175, Color.BLUE);
@@ -27,6 +27,10 @@ public class Scania extends Truck {
     }
 
 
+    /**
+     * Moves the platform by the specified angle. Pass negative values to raise
+     * @param amount The amount to change the angle by in degrees
+     */
     public final void movePlatform(double amount){
         if (getCurrentSpeed() > 0) return;
         platformAngle = Math.max(0, Math.min(MAX_PLATFORM_ANGLE, platformAngle + amount));

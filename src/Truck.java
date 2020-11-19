@@ -16,11 +16,16 @@ public abstract class Truck extends Car {
         super.gas(amount);
     }
 
-
+    /**
+     * Constructs a truck with default values
+     */
     public Truck() {
         super();
     }
-    
+
+    /**
+     * Constructs a car with custom values
+     */
     public Truck(int nrDoors, double enginePower, Color color) {
         super(nrDoors, enginePower, color);
     }
