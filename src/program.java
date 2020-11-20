@@ -1,41 +1,52 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
+import java.lang.Object.*;
 
 public class program extends JFrame{
-
+    KeyListener keys = new KeyListener();
     ArrayList<Car> cars;
 
     public program(String a){
         super(a);
 
+        addKeyListener(keys);
+
         cars = new ArrayList<Car>();
 
+        cars.add(new Volvo240());
         cars.add(new Volvo240());
     }
 
     public void paint(Graphics g) {
         super.paint(g);
 
+        if (keys.isPressed('w')) System.out.println("SA");
+        Car playerCar = cars.get(0);
+        if (keys.isPressed('w')) playerCar.gas(.1);
+        if (keys.isPressed('s')) playerCar.brake(.2);
+        if (keys.isPressed('d')) playerCar.turnRight();
+        if (keys.isPressed('a')) playerCar.turnLeft();
 
 
-        for (Car car : cars){
-            System.out.println("Current X " + car.x);
-            car.gas(1);
+        for (int i = 0; i < cars.size(); i++) {
+            Car car = cars.get(i);
+
             car.move();
-            //car.turnRight();
+
             if (car instanceof Volvo240 || car instanceof Saab95){
-                paintCar(car, g);
+                DrawPoints.drawCar(g, car);
             }
         }
-    }
-
-    void paintCar(Car car, Graphics g){
-        int[][] carPoints = DrawPoints.DrawCar.GetPoints(car);
-        int pointCount = DrawPoints.DrawCar.Count();
-
-        g.drawPolygon(carPoints[0], carPoints[1], pointCount);
     }
 
     public static void main(String args[]){
@@ -45,9 +56,9 @@ public class program extends JFrame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-
         FrameUpdaterThread thread = new FrameUpdaterThread(frame);
         thread.start();
+
     }
 }
 
@@ -124,7 +135,6 @@ class DrawPoints{
             return PointsToScreen(coordinates, car);
         }
     }
-
 };
 
 class FrameUpdaterThread extends Thread {
@@ -148,5 +158,26 @@ class FrameUpdaterThread extends Thread {
             System.out.println("Updater interrupted. Reason: " + e.getMessage());
         }
 
+    }
+}
+
+class KeyListener extends KeyAdapter {
+    private boolean[] keyPressed = new boolean[65536];
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        super.keyPressed(e);
+
+        keyPressed[e.getKeyChar()] = true;
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        super.keyReleased(e);
+        keyPressed[e.getKeyChar()] = false;
+    }
+
+    public boolean isPressed(char ch){
+        return keyPressed[ch];
     }
 }
