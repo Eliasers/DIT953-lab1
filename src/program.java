@@ -44,7 +44,7 @@ public class program extends JFrame{
             car.move();
 
             if (car instanceof Volvo240 || car instanceof Saab95){
-                DrawPoints.drawCar(g, car);
+                DrawPoints.DrawCar.drawCar(g, car);
             }
         }
     }
@@ -134,6 +134,16 @@ class DrawPoints{
 
             return PointsToScreen(coordinates, car);
         }
+
+        public static void drawCar(Graphics g, Car car){
+            double[][] coordinates = new double[][]{carXPoints, carYPoints};
+
+            coordinates = Rotate2DArray(coordinates, car.getAngle());
+
+            int[][] correctedCoordinate = PointsToScreen(coordinates, car);
+
+            g.drawPolygon(correctedCoordinate[0], correctedCoordinate[1], Count());
+        }
     }
 };
 
@@ -151,7 +161,7 @@ class FrameUpdaterThread extends Thread {
         try{
             while(true){
                 frame.paint(g);
-                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(100);
             }
         }
         catch (Exception e){
