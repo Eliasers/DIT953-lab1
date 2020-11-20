@@ -25,7 +25,6 @@ public class Test {
 
     @org.junit.Test
     public void testScania() {
-        //Not necessarily finished
         Scania scania = new Scania();
         carTest(scania);
         stopCar(scania);
@@ -110,5 +109,13 @@ public class Test {
         carTransport.loadCar(volvo);
         assertEquals(volvo, carTransport.unloadCar());
 
+    }
+
+    @org.junit.Test
+    public void testShop() {
+        VolvoShop volvoShop = new VolvoShop();
+        Volvo240 volvo = new Volvo240();
+        volvoShop.deposit(volvo);
+        assertEquals(volvo, volvoShop.retrieve(0));
     }
 }

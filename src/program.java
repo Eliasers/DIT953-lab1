@@ -117,10 +117,10 @@ class DrawPoints{
 
     public static class DrawCar {
         private static double[] carXPoints = new double[]{
-                -1.2, -1.5, -1.3, 1.3, 1.6, 1.4
+                -2, 2, 2, -2
         };
         private static double[] carYPoints = new double[]{
-                0, -1, -1.6, -1.5, -1, 0
+                -1, -1, 1, 1
         };
 
         public static int Count() {
