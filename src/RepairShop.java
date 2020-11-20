@@ -15,4 +15,14 @@ public abstract class RepairShop {
         cars = new ArrayList<>();
         capacity = 12;
     }
+
+    protected void deposit(Car car){
+        if (cars.size() == capacity) return;
+        cars.add(car);
+    }
+
+    protected Car retrieve(int index) {
+        Car car = cars.get(index);
+        cars.remove(car);
+        return car;}
 }
