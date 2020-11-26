@@ -1,27 +1,20 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
-import java.lang.Object.*;
 
 public class program extends JFrame{
     KeyListener keys = new KeyListener();
-    ArrayList<Car> cars;
+    ArrayList<ACar> cars;
 
     public program(String a){
         super(a);
 
         addKeyListener(keys);
 
-        cars = new ArrayList<Car>();
+        cars = new ArrayList<ACar>();
 
         cars.add(new Volvo240());
         cars.add(new Volvo240());
@@ -31,7 +24,7 @@ public class program extends JFrame{
         super.paint(g);
 
         if (keys.isPressed('w')) System.out.println("SA");
-        Car playerCar = cars.get(0);
+        ACar playerCar = cars.get(0);
         if (keys.isPressed('w')) playerCar.gas(.1);
         if (keys.isPressed('s')) playerCar.brake(.2);
         if (keys.isPressed('d')) playerCar.turnRight();
@@ -39,7 +32,7 @@ public class program extends JFrame{
 
 
         for (int i = 0; i < cars.size(); i++) {
-            Car car = cars.get(i);
+            ACar car = cars.get(i);
 
             car.move();
 
@@ -127,7 +120,7 @@ class DrawPoints{
             return carXPoints.length;
         }
 
-        public static int[][] GetPoints(Car car){
+        public static int[][] GetPoints(ACar car){
             double[][] coordinates = new double[][]{carXPoints, carYPoints};
 
             coordinates = Rotate2DArray(coordinates, car.getAngle());
@@ -135,7 +128,7 @@ class DrawPoints{
             return PointsToScreen(coordinates, car);
         }
 
-        public static void drawCar(Graphics g, Car car){
+        public static void drawCar(Graphics g, ACar car){
             double[][] coordinates = new double[][]{carXPoints, carYPoints};
 
             coordinates = Rotate2DArray(coordinates, car.getAngle());

@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Class representing a Volvo240 car
  */
-public class Volvo240 extends Car {
+public class Volvo240 extends ACar {
 
     /**
      * Indicates the trimfactor which affects speed

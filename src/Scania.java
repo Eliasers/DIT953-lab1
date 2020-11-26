@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Class representing a Scania Truck
  */
-public class Scania extends Truck {
+public class Scania extends ATruck {
 
     private static final double MAX_PLATFORM_ANGLE = 70.0;
 

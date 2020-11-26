@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Abstract class whose children should represent trucks with platforms that can be raised and lowered
  */
-public abstract class Truck extends Car {
+public abstract class ATruck extends ACar {
     protected abstract boolean platformLowered();
 
     /**
@@ -19,14 +19,14 @@ public abstract class Truck extends Car {
     /**
      * Constructs a truck with default values
      */
-    public Truck() {
+    public ATruck() {
         super();
     }
 
     /**
      * Constructs a car with custom values
      */
-    public Truck(int nrDoors, double enginePower, Color color) {
+    public ATruck(int nrDoors, double enginePower, Color color) {
         super(nrDoors, enginePower, color);
     }
 }

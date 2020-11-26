@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Abstract class whose children should represent cars
  */
-public abstract class Car implements IMovable {
+public abstract class ACar implements IMovable {
     /**
      * Number of doors on the car
      */
@@ -28,7 +28,7 @@ public abstract class Car implements IMovable {
     /**
      * Coordinate of the car
      */
-    public double x = 0, y = 0;
+    protected double x = 0, y = 0;
     /**
      * The rotation angle of the car in radians
      */
@@ -37,7 +37,7 @@ public abstract class Car implements IMovable {
     /**
      * Constructs a car with default values
      */
-    public Car(){
+    public ACar(){
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;
@@ -46,7 +46,7 @@ public abstract class Car implements IMovable {
     /**
      * Constructs a car with custom values
      */
-    public Car(int nrDoors, double enginePower, Color color) {
+    public ACar(int nrDoors, double enginePower, Color color) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.color = color;
@@ -184,11 +184,11 @@ public abstract class Car implements IMovable {
     @Override
     public double[] getPosition() {return new double[]{x, y};}
 
-    public double getDistance(Car other){
+    public double getDistance(ACar other){
         return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
     }
 
-    public static void positionCarBehind(Car self, Car other) {
+    public static void positionCarBehind(ACar self, ACar other) {
         other.x -= Math.cos(self.getAngle()) * 2;
         other.y -= Math.sin(self.getAngle()) * 2;
     }

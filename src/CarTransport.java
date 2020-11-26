@@ -1,18 +1,15 @@
 import java.awt.*;
-import java.lang.reflect.Type;
 import java.util.ArrayDeque;
-import java.util.Collection;
 import java.util.Deque;
-import java.util.Iterator;
 
 /**
  * Class representing a Car transport
  */
-public class CarTransport extends Truck implements ICarTransport {
+public class CarTransport extends ATruck implements ICarTransport {
 
     private boolean platformLowered;
 
-    private Deque<Car> loadedCars;
+    private Deque<ACar> loadedCars;
 
     /**
      * Constructs a car transport with default values
@@ -37,7 +34,7 @@ public class CarTransport extends Truck implements ICarTransport {
      * @param car if the distance to the car isn't to long, the platform is lowered and the car isn't this car transport loads the car on the car transport
      */
     @Override
-    public void loadCar(Car car) {
+    public void loadCar(ACar car) {
         if (!platformLowered() || getDistance(car) > 5 || car == this){
             //Car cannot be loaded because the platform is raised, the car is too far, or this transport is trying to load itself
             return;
@@ -50,9 +47,9 @@ public class CarTransport extends Truck implements ICarTransport {
      * @return the last loaded car from car transport
      */
     @Override
-    public Car unloadCar() {
-        Car car = loadedCars.pop();
-        Car.positionCarBehind(this, car);
+    public ACar unloadCar() {
+        ACar car = loadedCars.pop();
+        ACar.positionCarBehind(this, car);
         return car;
     }
 
@@ -62,7 +59,7 @@ public class CarTransport extends Truck implements ICarTransport {
     @Override
     public void move() {
         super.move();
-        for (Car car : loadedCars){
+        for (ACar car : loadedCars){
             car.x = x;
             car.y = y;
             car.setAngle(getAngle());

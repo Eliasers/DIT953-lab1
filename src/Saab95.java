@@ -1,9 +1,7 @@
-import java.awt.*;
-
 /**
  * Class representing a Saab 95 car
  */
-public class Saab95 extends Car {
+public class Saab95 extends ACar {
     /**
      * The state of the turbo
      */

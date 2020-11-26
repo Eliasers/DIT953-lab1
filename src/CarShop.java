@@ -1,10 +1,10 @@
 public class CarShop extends RepairShop {
 
-    public void deposit(Car car){
+    public void deposit(ACar car){
         super.deposit(car);
     }
 
-    public Car retrieve(int index){
+    public ACar retrieve(int index){
         return super.retrieve(index);
     }
 

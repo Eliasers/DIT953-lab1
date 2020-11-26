@@ -6,11 +6,11 @@ public interface ICarTransport {
      * Loads a car into the object
      * @param car
      */
-    public void loadCar(Car car);
+    public void loadCar(ACar car);
 
     /**
      * Unloads a car from the object
      * @return The car retrieved from the object
      */
-    public Car unloadCar();
+    public ACar unloadCar();
 }

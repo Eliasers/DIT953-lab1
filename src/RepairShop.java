@@ -6,7 +6,7 @@ import java.util.List;
  */
 public abstract class RepairShop {
     protected int capacity;
-    protected List<Car> cars;
+    protected List<ACar> cars;
 
     /**
      * Constructs a Repair shop with default values
@@ -20,7 +20,7 @@ public abstract class RepairShop {
      * Deposit a car to the repair shop
      * @param car The car to be deposited
      */
-    protected void deposit(Car car){
+    protected void deposit(ACar car){
         if (cars.size() == capacity) return;
         cars.add(car);
     }
@@ -30,8 +30,8 @@ public abstract class RepairShop {
      * @param index The position of the car to retrieve
      * @return The retrieved car
      */
-    protected Car retrieve(int index) {
-        Car car = cars.get(index);
+    protected ACar retrieve(int index) {
+        ACar car = cars.get(index);
         cars.remove(car);
         return car;}
 }

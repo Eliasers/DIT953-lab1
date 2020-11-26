@@ -40,7 +40,7 @@ public class Test {
         assertTrue(scania.getCurrentSpeed() > speed);
     }
 
-    void carTest(Car car) {
+    void carTest(ACar car) {
         car.gas(1);
 
         //LEFT
@@ -76,7 +76,7 @@ public class Test {
         assertTrue(car.getNrDoors() >= 0);
     }
 
-    void moveChangeXY(Car car, boolean xChange, boolean yChange) {
+    void moveChangeXY(ACar car, boolean xChange, boolean yChange) {
         double oldX = car.x;
         double oldY = car.y;
 
@@ -90,7 +90,7 @@ public class Test {
         else assertEquals(oldY, car.y, maxDivergence);
     }
 
-    void stopCar(Car car) {
+    void stopCar(ACar car) {
         while (car.getCurrentSpeed() > 0) {
             car.brake(1);
         }
