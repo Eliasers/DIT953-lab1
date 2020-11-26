@@ -23,6 +23,8 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<ACar> cars = new ArrayList<>();
 
+    static int ARBITRARY_TEMPORARY_CAR_WIDTH_NUMBER = 100;
+
     //methods:
 
     public static void main(String[] args) {
@@ -46,7 +48,17 @@ public class CarController {
             for (ACar car : cars) {
                 car.move();
                 int x = (int) Math.round(car.getPosition()[0]);
-                int y = (int) Math.round(car.getPosition()[0]);
+                int y = (int) Math.round(car.getPosition()[1]);
+
+                double angle = car.getAngle();
+
+                if ((x > frame.getWidth() - ARBITRARY_TEMPORARY_CAR_WIDTH_NUMBER && Math.cos(angle) > 0) || (x < 0 && Math.cos(angle) < 0 )) {
+                    car.stopEngine();
+                    car.turnRight();
+                    car.turnRight();
+                    car.startEngine();
+                }
+
                 frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
@@ -60,6 +72,15 @@ public class CarController {
         for (ACar car : cars
                 ) {
             car.gas(gas);
+        }
+    }
+
+    // Calls the brake method for each car once
+    void brake(int amount) {
+        double brake = ((double) amount) / 100;
+        for (ACar car : cars
+        ) {
+            car.brake(brake);
         }
     }
 }
