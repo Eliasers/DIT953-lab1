@@ -4,14 +4,14 @@ import java.util.List;
 /**
  * Children should represent workshops that can have cars admitted, to a capacity, and retrieved
  */
-public abstract class RepairShop {
+public abstract class ARepairShop {
     protected int capacity;
     protected List<ACar> cars;
 
     /**
      * Constructs a Repair shop with default values
      */
-    public RepairShop(){
+    public ARepairShop(){
         cars = new ArrayList<>();
         capacity = 12;
     }

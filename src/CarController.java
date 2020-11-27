@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 /*
 * This class represents the Controller part in the MVC pattern.
@@ -23,6 +27,10 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<ACar> cars = new ArrayList<>();
 
+    // The specs say one of each, I oblige. It may hurt a not-insignificant piece of my soul, but it will make a lot of things a hell of a lot easier for all of us
+    Saab95 saab95;
+    Scania scania;
+
     static int ARBITRARY_TEMPORARY_CAR_WIDTH_NUMBER = 100;
 
     //methods:
@@ -31,10 +39,31 @@ public class CarController {
         // Instance of this class
         CarController cc = new CarController();
 
-        cc.cars.add(new Volvo240());
+        HashMap<ACar, BufferedImage> carImages = new HashMap<ACar, BufferedImage>();
+
+        ACar volvo240 = new Volvo240();
+        cc.cars.add(volvo240);
+        carImages.put(volvo240, DrawPanel.getImage("Volvo240.jpg"));
+
+        Saab95 saab95 = new Saab95();
+        saab95.y += 100;
+        cc.cars.add(saab95);
+        carImages.put(saab95, DrawPanel.getImage("Saab95.jpg"));
+        cc.saab95 = saab95;
+
+        Scania scania = new Scania();
+        scania.y += 200;
+        cc.cars.add(scania);
+        carImages.put(scania, DrawPanel.getImage("Scania.jpg"));
+        cc.scania = scania;
 
         // Start a new view and send a reference of self
         cc.frame = new CarView("CarSim 1.0", cc);
+
+        // Give the draw panel a reference to cars
+        cc.frame.drawPanel.cars = cc.cars;
+        // And carImages
+        cc.frame.drawPanel.carImages = carImages;
 
         // Start the timer
         cc.timer.start();
@@ -59,7 +88,6 @@ public class CarController {
                     car.startEngine();
                 }
 
-                frame.drawPanel.moveit(x, y);
                 // repaint() calls the paintComponent method of the panel
                 frame.drawPanel.repaint();
             }
@@ -81,6 +109,30 @@ public class CarController {
         for (ACar car : cars
         ) {
             car.brake(brake);
+        }
+    }
+
+    void setTurbo(boolean value) {
+        if (value){
+            saab95.setTurboOn();
+        } else {
+            saab95.setTurboOff();
+        }
+    }
+
+    void movePlatform(double value) {
+        scania.movePlatform(value);
+    }
+
+    void start() {
+        for (ACar car : cars){
+            car.startEngine();
+        }
+    }
+
+    void stop() {
+        for (ACar car : cars){
+            car.stopEngine();
         }
     }
 }
