@@ -1,0 +1,13 @@
+Create the model class and move the update logic and control methods from the old "CarController" there.
+Make control methods in model public in order to make them accessible to potential controller modules toward the specifics of which the model itself is agnostic.
+Create public methods that get the data, in which a potential view module might take interest.
+
+For every step, remove code that references old dependencies. General cleanup.
+
+Create the view class and move the drawing code from the old "DrawPanel" into a timer that continuously polls the model through a reference for the data required for drawing.
+
+Create the controller class and move the button creation code from the old "CarView" into its constructor. Set up the buttons to call control methods in the model through a reference.
+
+Create the application class and add the main method which creates instances of the relevant classes and connects the required references.
+
+These changes should be independent of each other as the original program didn't have much reuse of code and the changes are mostly moving code around.
