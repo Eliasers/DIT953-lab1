@@ -27,7 +27,6 @@ public class CarController {
     // A list of cars, modify if needed
     ArrayList<ACar> cars = new ArrayList<>();
 
-    // The specs say one of each, I oblige. It may hurt a not-insignificant piece of my soul, but it will make a lot of things a hell of a lot easier for all of us
     Saab95 saab95;
     Scania scania;
 
