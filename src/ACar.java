@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Abstract class whose children should represent cars
  */
-public abstract class ACar implements IMovable, IEngine {
+public abstract class ACar implements IMovable {
     /**
      * Number of doors on the car
      */
