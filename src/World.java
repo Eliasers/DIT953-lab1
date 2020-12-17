@@ -1,4 +1,4 @@
-import java.util.List;
+import java.util.*;
 
 public class World implements IUpdatable, IWorld {
     static private final int ARBITRARY_TEMPORARY_CAR_WIDTH_NUMBER = 100;
@@ -6,6 +6,12 @@ public class World implements IUpdatable, IWorld {
     List<ACar> cars;
 
     private int width, height;
+
+    public World (int width, int height) {
+        cars = new ArrayList<ACar>();
+        this.width = width;
+        this.height = height;
+    }
 
     @Override
     public void update() {
@@ -28,6 +34,10 @@ public class World implements IUpdatable, IWorld {
     @Override
     public List<IMovable> getEntities() {
         return (List<IMovable>)(List<?>)cars;
+    }
+
+    public void addCar(ACar car) {
+        cars.add(car);
     }
 
 
