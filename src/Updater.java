@@ -19,6 +19,7 @@ public class Updater implements ActionListener {
         }
         
         //Old update logic
+        //Has been copied to World.update() and modified, notably through the removal of references to 'frame'
         /*for (ACar car : cars) {
             car.move();
             int x = (int) Math.round(car.getPosition()[0]);
