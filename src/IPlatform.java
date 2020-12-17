@@ -1,4 +1,4 @@
 public interface IPlatform {
     void movePlatform(double angle);
-    bool platformLowered();
+    boolean platformLowered();
 }
