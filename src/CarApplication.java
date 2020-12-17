@@ -27,6 +27,10 @@ public class CarApplication {
         //Add controller
         frame.add(new CarController(world.getHandler()));
 
+        //Add list view
+        ListView listView = new ListView(world);
+        frame.add(listView);
+
         // Make the frame pack all its components by respecting the sizes if possible.
         frame.pack();
 
@@ -40,9 +44,9 @@ public class CarApplication {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create updater
-        Updater updater = new Updater(new IUpdatable[]{world, view});
+        Updater updater = new Updater(new IUpdatable[]{world, view, listView});
 
-        Timer timer = new Timer(5, updater);
+        Timer timer = new Timer(15, updater);
         timer.start();
 
     }
