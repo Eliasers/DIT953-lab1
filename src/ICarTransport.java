@@ -4,7 +4,7 @@
 public interface ICarTransport {
     /**
      * Loads a car into the object
-     * @param car
+     * @param car The car to be loaded
      */
     public void loadCar(ACar car);
 

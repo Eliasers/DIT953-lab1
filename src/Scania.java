@@ -25,10 +25,10 @@ public class Scania extends ACar implements IPlatform {
 
     /**
      * Moves the platform by the specified angle. Pass negative values to raise
-     * @param amount The amount to change the angle by in degrees
+     * @param angle The amount to change the angle by in degrees
      */
-    public final void movePlatform(double amount){
+    public final void movePlatform(double angle){
         if (getCurrentSpeed() > 0) return;
-        platform.movePlatform(amount);
+        platform.movePlatform(angle);
     }
 }

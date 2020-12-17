@@ -5,19 +5,20 @@ import java.util.Deque;
 /**
  * Class representing a Car transport
  */
-public class CarTransport extends ATruck implements ICarTransport {
+public class CarTransport extends ACar implements ICarTransport, IPlatform {
 
-    private boolean platformLowered;
 
     private Deque<ACar> loadedCars;
+
+    private Platform platform;
 
     /**
      * Constructs a car transport with default values
      */
     public CarTransport() {
         super(2, 300, Color.yellow);
-        platformLowered = false;
         loadedCars = new ArrayDeque<>();
+        platform = new Platform();
     }
 
     /**
@@ -25,8 +26,13 @@ public class CarTransport extends ATruck implements ICarTransport {
      * @return The state of the platform
      */
     @Override
-    protected boolean platformLowered() {
-        return platformLowered;
+    public boolean platformLowered() {
+        return platform.platformLowered();
+    }
+
+    @Override
+    public void movePlatform(double angle) {
+        platform.movePlatform(angle);
     }
 
     /**
@@ -66,12 +72,5 @@ public class CarTransport extends ATruck implements ICarTransport {
         }
     }
 
-    public void lowerPlatform() {
-        if (getCurrentSpeed() > 0) return;
-        platformLowered = true;
-    }
 
-    public void raisePlatform() {
-        platformLowered = false;
-    }
 }
