@@ -23,11 +23,6 @@ public class CarController extends JPanel {
     private static final int X = 800;
     private static final int Y = 800;
 
-    // The controller member
-    CarController carC;
-
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
-
     JPanel gasPanel = new JPanel();
     JSpinner gasSpinner = new JSpinner();
     int gasAmount = 50;

@@ -21,7 +21,8 @@ public class CarApplication {
         frame.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         //Add view
-        frame.add(new CarView(width, height, world));
+        CarView viewer = new CarView(width, height - 240, world);
+        frame.add(viewer);
 
         //Add controller
         frame.add(new CarController(world.getHandler()));
@@ -37,6 +38,9 @@ public class CarApplication {
         frame.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        //Create updater
+        Updater updater = new Updater(new IUpdatable[]{world, viewer});
 
     }
 

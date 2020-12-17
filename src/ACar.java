@@ -188,17 +188,14 @@ public abstract class ACar implements IMovable {
         other.y -= Math.sin(self.getAngle()) * 2;
     }
 
-    @Override
     public double getEnginePower() {
         return enginePower;
     }
 
-    @Override
     public void startEngine() {
         currentSpeed = 0.1;
     }
 
-    @Override
     public void stopEngine() {
         currentSpeed = 0;
     }
