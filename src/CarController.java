@@ -68,31 +68,6 @@ public class CarController {
         cc.timer.start();
     }
 
-    /* Each step the TimerListener moves all the cars in the list and tells the
-    * view to update its images. Change this method to your needs.
-    * */
-    private class TimerListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            for (ACar car : cars) {
-                car.move();
-                int x = (int) Math.round(car.getPosition()[0]);
-                int y = (int) Math.round(car.getPosition()[1]);
-
-                double angle = car.getAngle();
-
-                if ((x > frame.getWidth() - ARBITRARY_TEMPORARY_CAR_WIDTH_NUMBER && Math.cos(angle) > 0) || (x < 0 && Math.cos(angle) < 0 )) {
-                    car.stopEngine();
-                    car.turnRight();
-                    car.turnRight();
-                    car.startEngine();
-                }
-
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
-        }
-    }
-
     // Calls the gas method for each car once
     void gas(int amount) {
         double gas = ((double) amount) / 100;
