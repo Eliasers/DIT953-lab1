@@ -5,14 +5,12 @@ public class CarApplication {
 
     static int width = 1200, height = 800;
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         //Create model
         World world = new World(width, height);
         world.addCar(new Volvo240());
         world.addCar(new Saab95());
         world.addCar(new Scania());
-
-        List<IUpdatable>
 
         //Create frame for view and controller
 
@@ -23,8 +21,8 @@ public class CarApplication {
         frame.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         //Add view
-        CarView viewer = new CarView(width, height - 240, world);
-        frame.add(viewer);
+        CarView view = new CarView(width, height - 240, world);
+        frame.add(view);
 
         //Add controller
         frame.add(new CarController(world.getHandler()));
@@ -42,7 +40,9 @@ public class CarApplication {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Create updater
-        Updater updater = new Updater(new IUpdatable[]{world, viewer});
+        Updater updater = new Updater(new IUpdatable[]{world, view});
+
+        Timer timer = new Timer(50, updater);
 
     }
 
