@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Abstract class whose children should represent cars
  */
-public abstract class ACar implements IMovable {
+public abstract class ACar implements IMovable, IEngine {
     /**
      * Number of doors on the car
      */
@@ -34,10 +34,11 @@ public abstract class ACar implements IMovable {
      */
     private double angle = 0;
 
+
     /**
      * Constructs a car with default values
      */
-    public ACar(){
+    public ACar() {
         nrDoors = 2;
         color = Color.red;
         enginePower = 125;
@@ -52,40 +53,38 @@ public abstract class ACar implements IMovable {
         this.color = color;
     }
 
+
     /**
      * Get number of car doors
+     *
      * @return Number of car doors
      */
-    public int getNrDoors(){
+    public int getNrDoors() {
         return nrDoors;
     }
 
-    /**
-     * Get the power of the car's engine
-     * @return The power of the car's engine
-     */
-    public double getEnginePower(){
-        return enginePower;
-    }
 
     /**
      * Get the magnitude of the car's current velocity
+     *
      * @return The magnitude of the car's current velocity
      */
-    public double getCurrentSpeed(){
+    public double getCurrentSpeed() {
         return currentSpeed;
     }
 
     /**
      * Get the color of the car's chassis
+     *
      * @return The color of the car's chassis
      */
-    public Color getColor(){
+    public Color getColor() {
         return color;
     }
 
     /**
      * Get the car's facing direction
+     *
      * @return The car's current rotation angle
      */
     public double getAngle() {
@@ -94,6 +93,7 @@ public abstract class ACar implements IMovable {
 
     /**
      * Sets the angle of the car's rotation. Used by transports
+     *
      * @param angle The angle to set the car's rotation to
      */
     public void setAngle(double angle) {
@@ -102,28 +102,17 @@ public abstract class ACar implements IMovable {
 
     /**
      * Set the color of the car's chassis
+     *
      * @param clr The color to set the car's chassis color to
      */
-    public void setColor(Color clr){
+    public void setColor(Color clr) {
         color = clr;
     }
 
-    /**
-     * Start the car's engine
-     */
-    public void startEngine(){
-        currentSpeed = 0.1;
-    }
-
-    /**
-     * Stop the car's engine
-     */
-    public void stopEngine(){
-        currentSpeed = 0;
-    }
 
     /**
      * Get the acceleration output of the car
+     *
      * @return The acceleration output of the car
      */
     protected double speedFactor() {
@@ -132,33 +121,37 @@ public abstract class ACar implements IMovable {
 
     /**
      * Accelerate the car
+     *
      * @param amount Acceleration input factor
      */
-    private void incrementSpeed(double amount){
-        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
+    private void incrementSpeed(double amount) {
+        currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount, enginePower);
     }
 
     /**
      * Decelerate the car
+     *
      * @param amount Deceleration input factor
      */
-    private void decrementSpeed(double amount){
-        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
+    private void decrementSpeed(double amount) {
+        currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
     }
 
     /**
      * Step on the gas
+     *
      * @param amount One minus the distance between the pedal and the metal
      */
-    public void gas(double amount){
+    public void gas(double amount) {
         incrementSpeed(Math.max(0, Math.min(1, amount)));
     }
 
     /**
      * Step on the brake
+     *
      * @param amount Brake hardness from zero to one
      */
-    public void brake(double amount){
+    public void brake(double amount) {
         decrementSpeed(Math.max(0, Math.min(1, amount)));
     }
 
@@ -182,14 +175,31 @@ public abstract class ACar implements IMovable {
     }
 
     @Override
-    public double[] getPosition() {return new double[]{x, y};}
+    public double[] getPosition() {
+        return new double[]{x, y};
+    }
 
-    public double getDistance(ACar other){
+    public double getDistance(ACar other) {
         return Math.sqrt(Math.pow(x - other.x, 2) + Math.pow(y - other.y, 2));
     }
 
     public static void positionCarBehind(ACar self, ACar other) {
         other.x -= Math.cos(self.getAngle()) * 2;
         other.y -= Math.sin(self.getAngle()) * 2;
+    }
+
+    @Override
+    public double getEnginePower() {
+        return enginePower;
+    }
+
+    @Override
+    public void startEngine() {
+        currentSpeed = 0.1;
+    }
+
+    @Override
+    public void stopEngine() {
+        currentSpeed = 0;
     }
 }

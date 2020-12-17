@@ -1,4 +1,7 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -13,100 +16,135 @@ import java.util.HashMap;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController extends JPanel {
     // member fields:
+    World.InputHandler handler;
 
-    // The delay (ms) corresponds to 20 updates a sec (hz)
-    private final int delay = 50;
-    // The timer is started with an listener (see below) that executes the statements
-    // each step between delays.
-    private Timer timer = new Timer(delay, new TimerListener());
+    private static final int X = 800;
+    private static final int Y = 800;
 
-    // The frame that represents this instance View of the MVC pattern
-    CarView frame;
-    // A list of cars, modify if needed
-    ArrayList<ACar> cars = new ArrayList<>();
+    // The controller member
+    CarController carC;
 
-    Saab95 saab95;
-    Scania scania;
+    DrawPanel drawPanel = new DrawPanel(X, Y-240);
 
-    static int ARBITRARY_TEMPORARY_CAR_WIDTH_NUMBER = 100;
+    JPanel gasPanel = new JPanel();
+    JSpinner gasSpinner = new JSpinner();
+    int gasAmount = 50;
+    JLabel gasLabel = new JLabel("Gas/Brake %");
 
-    //methods:
+    JButton gasButton = new JButton("Gas");
+    JButton brakeButton = new JButton("Brake");
+    JButton turboOnButton = new JButton("Saab Turbo on");
+    JButton turboOffButton = new JButton("Saab Turbo off");
+    JButton liftBedButton = new JButton("Scania Lift Bed");
+    JButton lowerBedButton = new JButton("Lower Lift Bed");
 
-    public static void main(String[] args) {
-        // Instance of this class
-        CarController cc = new CarController();
+    JButton startButton = new JButton("Start all cars");
+    JButton stopButton = new JButton("Stop all cars");
 
-        HashMap<ACar, BufferedImage> carImages = new HashMap<ACar, BufferedImage>();
+    public CarController(World.InputHandler handler){
+        this.setPreferredSize(new Dimension(X,Y));
+        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        ACar volvo240 = new Volvo240();
-        cc.cars.add(volvo240);
-        carImages.put(volvo240, DrawPanel.getImage("Volvo240.jpg"));
+        SpinnerModel spinnerModel =
+                new SpinnerNumberModel(0, //initial value
+                        0, //min
+                        100, //max
+                        1);//step
+        gasSpinner = new JSpinner(spinnerModel);
+        gasSpinner.setValue(gasAmount);
+        gasSpinner.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                gasAmount = (int) ((JSpinner)e.getSource()).getValue();
+            }
+        });
 
-        Saab95 saab95 = new Saab95();
-        saab95.y += 100;
-        cc.cars.add(saab95);
-        carImages.put(saab95, DrawPanel.getImage("Saab95.jpg"));
-        cc.saab95 = saab95;
+        gasPanel.setLayout(new BorderLayout());
+        gasPanel.add(gasLabel, BorderLayout.PAGE_START);
+        gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-        Scania scania = new Scania();
-        scania.y += 200;
-        cc.cars.add(scania);
-        carImages.put(scania, DrawPanel.getImage("Scania.jpg"));
-        cc.scania = scania;
+        this.add(gasPanel);
 
-        // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
+        this.setLayout(new GridLayout(2,4));
 
-        // Give the draw panel a reference to cars
-        cc.frame.drawPanel.cars = cc.cars;
-        // And carImages
-        cc.frame.drawPanel.carImages = carImages;
+        this.add(gasButton, 0);
+        this.add(turboOnButton, 1);
+        this.add(liftBedButton, 2);
+        this.add(brakeButton, 3);
+        this.add(turboOffButton, 4);
+        this.add(lowerBedButton, 5);
+        this.setPreferredSize(new Dimension((X/2)+4, 200));
+        this.setBackground(Color.CYAN);
 
-        // Start the timer
-        cc.timer.start();
-    }
 
-    // Calls the gas method for each car once
-    void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (ACar car : cars
-                ) {
-            car.gas(gas);
-        }
-    }
+        startButton.setBackground(Color.blue);
+        startButton.setForeground(Color.green);
+        startButton.setPreferredSize(new Dimension(X/5-15,200));
+        this.add(startButton);
 
-    // Calls the brake method for each car once
-    void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (ACar car : cars
-        ) {
-            car.brake(brake);
-        }
-    }
 
-    void setTurbo(boolean value) {
-        if (value){
-            saab95.setTurboOn();
-        } else {
-            saab95.setTurboOff();
-        }
-    }
+        stopButton.setBackground(Color.red);
+        stopButton.setForeground(Color.black);
+        stopButton.setPreferredSize(new Dimension(X/5-15,200));
+        this.add(stopButton);
 
-    void movePlatform(double value) {
-        scania.movePlatform(value);
-    }
+        // This actionListener is for the gas button only
+        // TODO: Create more for each component as necessary
+        gasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.gas(gasAmount);
+            }
+        });
 
-    void start() {
-        for (ACar car : cars){
-            car.startEngine();
-        }
-    }
+        brakeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.brake(gasAmount);
+            }
+        });
 
-    void stop() {
-        for (ACar car : cars){
-            car.stopEngine();
-        }
+        turboOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.setTurbo(true);
+            }
+        });
+
+        turboOffButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.setTurbo(false);
+            }
+        });
+
+        lowerBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.movePlatform(30);
+            }
+        });
+
+        liftBedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.movePlatform(-30);
+            }
+        });
+
+        startButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.start();
+            }
+        });
+
+        stopButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handler.stop();
+            }
+        });
     }
 }
