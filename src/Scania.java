@@ -4,10 +4,7 @@ import java.awt.*;
  * Class representing a Scania Truck
  */
 public class Scania extends ATruck {
-
-    private static final double MAX_PLATFORM_ANGLE = 70.0;
-
-    private double platformAngle;
+    Platform platform;
 
     /**
      * The state of the platform
@@ -15,7 +12,7 @@ public class Scania extends ATruck {
      */
     @Override
     protected final boolean platformLowered() {
-        return platformAngle > 0;
+        return platform.platformLowered();
     }
 
     /**
@@ -23,9 +20,8 @@ public class Scania extends ATruck {
      */
     public Scania() {
         super(2, 175, Color.BLUE);
-        this.platformAngle = 0;
+        platform = new Platform();
     }
-
 
     /**
      * Moves the platform by the specified angle. Pass negative values to raise
@@ -33,6 +29,6 @@ public class Scania extends ATruck {
      */
     public final void movePlatform(double amount){
         if (getCurrentSpeed() > 0) return;
-        platformAngle = Math.max(0, Math.min(MAX_PLATFORM_ANGLE, platformAngle + amount));
+        platform.movePlatform(amount);
     }
 }
