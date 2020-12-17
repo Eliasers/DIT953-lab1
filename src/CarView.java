@@ -37,7 +37,8 @@ public class CarView extends JPanel implements IUpdatable {
 
 
     public void update() {
-        //repaint();
+        entities = world.getEntities();
+        repaint();
     }
 
 
@@ -51,7 +52,7 @@ public class CarView extends JPanel implements IUpdatable {
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.
-            return ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + path));
+            return ImageIO.read(CarView.class.getResourceAsStream("pics/" + path));
         } catch (IOException ex)
         {
             ex.printStackTrace();
@@ -65,8 +66,9 @@ public class CarView extends JPanel implements IUpdatable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (IMovable entity : entities) {
-            g.drawImage(images.get(entity), (int)Math.round(entity.getPosition()[0]), (int)Math.round(entity.getPosition()[1]), null);
+        for (int i = 0; i < entities.size(); i++) {
+            IMovable entity = entities.get(i);
+            g.drawImage(images.get(entity.getClass()), (int)Math.round(entity.getPosition()[0]), (int)Math.round(entity.getPosition()[1]) + i * 100, null);
         }
 
     }

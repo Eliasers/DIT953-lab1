@@ -42,7 +42,8 @@ public class CarApplication {
         //Create updater
         Updater updater = new Updater(new IUpdatable[]{world, view});
 
-        Timer timer = new Timer(50, updater);
+        Timer timer = new Timer(5, updater);
+        timer.start();
 
     }
 
