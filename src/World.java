@@ -7,14 +7,10 @@ public class World implements IUpdatable, IWorld {
 
     private int width, height;
 
-    private InputHandler handler;
-
     public World (int width, int height) {
         cars = new ArrayList<ACar>();
         this.width = width;
         this.height = height;
-
-        handler = new InputHandler();
     }
 
     @Override
@@ -35,10 +31,6 @@ public class World implements IUpdatable, IWorld {
         }
     }
 
-    public InputHandler getHandler(){
-        return handler;
-    }
-
     @Override
     public List<IMovable> getEntities() {
         return (List<IMovable>)(List<?>)cars;
@@ -48,9 +40,16 @@ public class World implements IUpdatable, IWorld {
         cars.add(car);
     }
 
+    public InputHandler getHandler() {
+        return new InputHandler(this);
+    }
 
     class InputHandler {
         World world;
+
+        InputHandler(World world) {
+            this.world = world;
+        }
 
         // Calls the gas method for each car once
         void gas(int amount) {

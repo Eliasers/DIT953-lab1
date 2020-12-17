@@ -12,6 +12,8 @@ public class CarApplication {
         world.addCar(new Saab95());
         world.addCar(new Scania());
 
+        List<IUpdatable>
+
         //Create frame for view and controller
 
         JFrame frame = new JFrame();
