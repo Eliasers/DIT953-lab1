@@ -7,10 +7,14 @@ public class World implements IUpdatable, IWorld {
 
     private int width, height;
 
+    private InputHandler handler;
+
     public World (int width, int height) {
         cars = new ArrayList<ACar>();
         this.width = width;
         this.height = height;
+
+        handler = new InputHandler();
     }
 
     @Override
@@ -29,6 +33,10 @@ public class World implements IUpdatable, IWorld {
                 car.startEngine();
             }
         }
+    }
+
+    public InputHandler getHandler(){
+        return handler;
     }
 
     @Override

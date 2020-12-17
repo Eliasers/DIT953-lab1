@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 
 
@@ -19,7 +20,9 @@ public class CarView extends JPanel implements IUpdatable {
     private static final int X = 800;
     private static final int Y = 800;
     private final IWorld world;
-    private HashMap<? extends ACar, BufferedImage> carImages= new HashMap<>();
+    private HashMap<Class, BufferedImage> images = new HashMap<>();
+
+    private List<IMovable> entities = new ArrayList<IMovable>();
 
     // Constructor
     public CarView(int x, int y, IWorld world ) {
@@ -27,12 +30,14 @@ public class CarView extends JPanel implements IUpdatable {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        carImages.put(Volvo240);
+        images.put(new Volvo240().getClass(), getImage("Volvo240.jpg"));
+        images.put(new Saab95().getClass(), getImage("Saab95.jpg"));
+        images.put(new Scania().getClass(), getImage("Scania.jpg"));
     }
 
 
     public void update() {
-        repaint();
+        //repaint();
     }
 
 
@@ -60,8 +65,8 @@ public class CarView extends JPanel implements IUpdatable {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (ACar car : cars) {
-            g.drawImage(carImages.get(car), (int)Math.round(car.getPosition()[0]), (int)Math.round(car.getPosition()[1]), null);
+        for (IMovable entity : entities) {
+            g.drawImage(images.get(entity), (int)Math.round(entity.getPosition()[0]), (int)Math.round(entity.getPosition()[1]), null);
         }
 
     }

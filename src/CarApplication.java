@@ -21,10 +21,10 @@ public class CarApplication {
         frame.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         //Add view
-        frame.add(new CarView(world));
+        frame.add(new CarView(width, height, world));
 
         //Add controller
-        frame.add(new CarController(world));
+        frame.add(new CarController(world.getHandler()));
 
         // Make the frame pack all its components by respecting the sizes if possible.
         frame.pack();
