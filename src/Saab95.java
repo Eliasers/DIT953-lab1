@@ -1,7 +1,7 @@
 /**
  * Class representing a Saab 95 car
  */
-public class Saab95 extends ACar {
+public class Saab95 extends ACar implements ITurbo{
     /**
      * The state of the turbo
      */
