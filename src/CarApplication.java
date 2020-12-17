@@ -21,10 +21,22 @@ public class CarApplication {
         frame.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         //Add view
-        frame.add(new CarView());
+        frame.add(new CarView(world));
 
         //Add controller
-        frame.add(new CarController());
+        frame.add(new CarController(world));
+
+        // Make the frame pack all its components by respecting the sizes if possible.
+        frame.pack();
+
+        // Get the computer screen resolution
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        // Center the frame
+        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+        // Make the frame visible
+        frame.setVisible(true);
+        // Make sure the frame exits when "x" is pressed
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     }
 

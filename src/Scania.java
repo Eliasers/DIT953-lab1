@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * Class representing a Scania Truck
  */
-public class Scania extends ATruck {
+public class Scania extends ACar implements IPlatform {
     Platform platform;
 
     /**
@@ -11,7 +11,7 @@ public class Scania extends ATruck {
      * @return platform lowered if platformAngle not equals 0
      */
     @Override
-    protected final boolean platformLowered() {
+    public final boolean platformLowered() {
         return platform.platformLowered();
     }
 
