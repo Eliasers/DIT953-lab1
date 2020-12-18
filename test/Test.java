@@ -102,7 +102,7 @@ public class Test {
         Volvo240 volvo = new Volvo240();
         carTest(carTransport);
         stopCar(carTransport);
-        carTransport.lowerPlatform();
+        carTransport.movePlatform(70);
         carTransport.gas(1);
         assertEquals(0, carTransport.getCurrentSpeed(), maxDivergence);
         
