@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class CarApplication {
 
-    static int width = 1200, height = 800;
+    static int width = 1200, height = 700;
 
     public static void main(String[] args){
         //Create model
@@ -17,7 +17,7 @@ public class CarApplication {
         JFrame frame = new JFrame();
 
         frame.setTitle("Car Simulator");
-        frame.setPreferredSize(new Dimension(width, height));
+        frame.setPreferredSize(new Dimension(width+100, height+100));
         frame.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
         //Add view
